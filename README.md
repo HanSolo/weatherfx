@@ -1,2 +1,2 @@
 #WeatherFX
-![ScreenShot](https://dl.dropboxusercontent.com/u/84552/medusa/WeatherFX.png)
+![ScreenShot](https://dl.dropboxusercontent.com/u/84552/WeatherFX.png)
