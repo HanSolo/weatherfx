@@ -39,14 +39,16 @@ public class Demo extends Application {
 
     @Override public void init() {
         if (!ApiKeys.DARK_SKY_API_KEY.isPresent() || !ApiKeys.MAPQUEST_API_KEY.isPresent()) throw new IllegalArgumentException("Please provide Dark Sky and Mapquest API Key");
-
+        Point2D home = new Point2D(0, 0);
         try {
-            System.out.println(GeoCode.geoCode("Westfalenstrasse 93, 48165 Münster, Germany"));
+            home = GeoCode.geoCode("Westfalenstrasse 93, 48165 Münster, Germany"); // Get latitude and longitude by geo coding
         } catch (UnsupportedEncodingException ex) {
-
+            System.exit(0);
         }
 
         Location location = new Location(HOME.getY(), HOME.getX(), "HILTRUP");
+        // Location location = new Location(HOME.getY(), HOME.getX()); // Will get the city name by reverse geo coding given latitude and longitude
+        // Location location = new Location(home.getY(), home.getX()); // Use latitude and longitude from geo coded street address
         location.setUnit(Unit.CA);
         location.setLanguage(Language.GERMAN);
 
