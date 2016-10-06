@@ -91,6 +91,7 @@ public class DarkSky {
         }
     }
     public enum Condition {
+        // Weather Conditions
         NONE("none", "unknown", 0.305085,0.576271),
         CLEAR_DAY("clear-day", "sun", 0.881356, 0.881356),
         CLEAR_NIGHT("clear-night", "sun", 0.881356, 0.881356),
@@ -104,6 +105,7 @@ public class DarkSky {
         PARTLY_CLOUDY_NIGHT("partly-cloudy-night", "sun-and-cloud", 0.983051, 0.745763),
         HAIL("hail", "sleet", 0.898305, 0.677966),
         THUNDERSTORM("thunderstorm", "thunderstorm", 0.898305, 0.728814),
+        // Unit Icons
         PRESSURE("pressure", "pressure", 0.610169, 0.610169),
         HUMIDITY("humidity", "humidity", 0.644068, 0.728814),
         WIND_SPEED("windSpeed", "wind", 0.813559, 0.474576),
