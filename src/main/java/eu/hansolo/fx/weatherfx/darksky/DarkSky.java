@@ -160,6 +160,7 @@ public class DarkSky {
     private        DataPoint       today;
     private        List<DataPoint> forecast;
     private        List<Alert>     alerts;
+    private        Instant         lastUpdate;
 
 
     // ******************** Constructors **************************************
@@ -167,14 +168,15 @@ public class DarkSky {
         this(0, 0);
     }
     public DarkSky(final double LATITUDE, final double LONGITUDE) {
-        latitude  = LATITUDE;
-        longitude = LONGITUDE;
-        language  = Language.ENGLISH;
-        unit      = Unit.CA;
-        timeZone  = TimeZone.getDefault();
-        today     = new DataPoint();
-        forecast  = new LinkedList<>();
-        alerts    = new LinkedList<>();
+        latitude   = LATITUDE;
+        longitude  = LONGITUDE;
+        language   = Language.ENGLISH;
+        unit       = Unit.CA;
+        timeZone   = TimeZone.getDefault();
+        today      = new DataPoint();
+        forecast   = new LinkedList<>();
+        alerts     = new LinkedList<>();
+        lastUpdate = Instant.MIN;
     }
 
 
@@ -208,6 +210,9 @@ public class DarkSky {
         return update(latitude, longitude);
     }
     public boolean update(final double LATITUDE, final double LONGITUDE) {
+        // Update only if lastUpdate is older than 10 min
+        if (Instant.now().minusSeconds(600).isBefore(lastUpdate)) return true;
+
         StringBuilder response = new StringBuilder();
         try {
             forecast.clear();
@@ -264,6 +269,9 @@ public class DarkSky {
                     alerts.add(alert);
                 }
             }
+
+            lastUpdate = Instant.now();
+
             return true;
         } catch (IOException ex) {
             System.out.println(ex);
