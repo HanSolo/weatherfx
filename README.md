@@ -1,4 +1,4 @@
-#WeatherFX
+## WeatherFX
 
 To use WeatherFX you need a
 - Dark Sky API key (https://darksky.net/dev/)
